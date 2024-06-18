@@ -1,4 +1,4 @@
-package com.example.githubuserfinder
+package com.example.githubuserfinder.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
