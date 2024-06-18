@@ -9,6 +9,14 @@ lifecycleRuntimeKtx = "2.8.2"
 activityCompose = "1.9.0"
 composeBom = "2024.06.00"
 ksp = "1.9.10-1.0.13"
+hilt = "2.48"
+androidxHiltNavigationCompose = "1.2.0"
+coilCompose = "2.4.0"
+retrofit = "2.9.0"
+kotlinx-serialization-converter = "1.0.0"
+kotlinx-serialization = "1.6.0"
+okhttp = "4.11.0"
+navigationCompose = "2.7.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -26,8 +34,33 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
+
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "kotlinx-serialization-converter" }
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+okHttp-bom = { module = "com.squareup.okhttp3:okhttp-bom", version.ref = "okhttp" }
+okHttp = { module = "com.squareup.okhttp3:okhttp" }
+okhttpInterceptor = { module = "com.squareup.okhttp3:logging-interceptor" }
+mock-webserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp" }
+
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+
+[bundles]
+hilt = ["hilt-android", "androidx-hilt-navigation-compose"]
+kotlinx-serialization = ["kotlinx-serialization-converter", "kotlinx-serialization"]
+okHttp = ["okHttp", "okhttpInterceptor", "mock-webserver"]
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+
 
