@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "GithubUserFinder"
 include(":app")
- 
+include(":core")
+include(":core:data")
+include(":core:domain")
