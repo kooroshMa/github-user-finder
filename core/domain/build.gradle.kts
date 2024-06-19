@@ -35,4 +35,7 @@ android {
 
 dependencies {
     implementation(libs.arrow.core)
+    implementation(libs.bundles.hilt)
+    ksp(libs.hilt.compiler)
+    implementation(libs.retrofit)
 }
