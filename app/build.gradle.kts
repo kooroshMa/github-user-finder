@@ -82,4 +82,5 @@ dependencies {
     implementation(libs.bundles.okHttp)
 
     implementation(libs.navigation.compose)
+    implementation(libs.arrow.core)
 }
