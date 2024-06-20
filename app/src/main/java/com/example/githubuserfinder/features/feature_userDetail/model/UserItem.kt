@@ -1,4 +1,4 @@
-package com.example.githubuserfinder.features.userDetail.model
+package com.example.githubuserfinder.features.feature_userDetail.model
 
 import com.example.domain.model.UserDetailModel
 

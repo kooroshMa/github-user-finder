@@ -1,4 +1,4 @@
-package com.example.githubuserfinder.features.userDetail
+package com.example.githubuserfinder.features.feature_userDetail
 
 import android.util.Log
 import androidx.compose.animation.core.MutableTransitionState
@@ -9,10 +9,10 @@ import com.example.domain.model.UserReposModel
 import com.example.domain.model.error.NetworkError
 import com.example.domain.usecase.GetUserDetailUseCase
 import com.example.domain.usecase.GetUserReposRepoUseCase
-import com.example.githubuserfinder.features.userDetail.model.UserItem
-import com.example.githubuserfinder.features.userDetail.model.UserReposItem
-import com.example.githubuserfinder.features.userDetail.model.toUserItem
-import com.example.githubuserfinder.features.userDetail.model.toUserReposItem
+import com.example.githubuserfinder.features.feature_userDetail.model.UserItem
+import com.example.githubuserfinder.features.feature_userDetail.model.UserReposItem
+import com.example.githubuserfinder.features.feature_userDetail.model.toUserItem
+import com.example.githubuserfinder.features.feature_userDetail.model.toUserReposItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
