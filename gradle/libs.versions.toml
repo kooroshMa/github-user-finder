@@ -69,6 +69,4 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-
-
-
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
