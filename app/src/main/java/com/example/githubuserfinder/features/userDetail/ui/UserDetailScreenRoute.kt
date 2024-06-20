@@ -13,9 +13,15 @@ internal fun UserDetailRoute(
     val user = viewModel.usersState.collectAsStateWithLifecycle()
     val isImageSectionVisible = viewModel.isImageSectionVisible.collectAsStateWithLifecycle()
 
+    val userRepos = viewModel.userRepoState.collectAsStateWithLifecycle()
+    val isReposVisible = viewModel.isReposVisible.collectAsStateWithLifecycle()
+
     UserDetailScreen(
         searchUser = viewModel::onSearchUser,
         user = user,
         isImageSectionVisible = isImageSectionVisible,
+        userRepos = userRepos,
+        isReposVisible = isReposVisible,
+        clearStates = viewModel::clearStates,
     )
 }

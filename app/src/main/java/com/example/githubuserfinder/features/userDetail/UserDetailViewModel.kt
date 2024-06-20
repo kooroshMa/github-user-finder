@@ -15,6 +15,7 @@ import com.example.githubuserfinder.features.userDetail.model.toUserItem
 import com.example.githubuserfinder.features.userDetail.model.toUserReposItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -36,6 +37,9 @@ class UserDetailViewModel @Inject constructor(
     private val _userRepoState = MutableStateFlow(emptyList<UserReposItem>())
     val userRepoState = _userRepoState.asStateFlow()
 
+    private val _isReposVisible = MutableStateFlow(MutableTransitionState(false))
+    val isReposVisible = _isReposVisible.asStateFlow()
+
     fun onSearchUser(userName: String) {
         if (userName.isBlank()) return
         viewModelScope.launch {
@@ -55,8 +59,8 @@ class UserDetailViewModel @Inject constructor(
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
                 _usersState.value = users.toUserItem()
-                _isImageSectionVisible.value.targetState = true
             }
+            _isImageSectionVisible.value.targetState = true
         }
     }
 
@@ -65,10 +69,17 @@ class UserDetailViewModel @Inject constructor(
             withContext(Dispatchers.Default) {
                 _userRepoState.value = repos.map { it.toUserReposItem() }
             }
+            delay(500L)
+            _isReposVisible.value.targetState = true
         }
     }
 
     private fun onErrorResponse(error: NetworkError) {
         Log.d("error", error.toString())
+    }
+
+    fun clearStates(){
+        _userRepoState.value = emptyList()
+        _usersState.value = UserItem(null,"",0)
     }
 }
