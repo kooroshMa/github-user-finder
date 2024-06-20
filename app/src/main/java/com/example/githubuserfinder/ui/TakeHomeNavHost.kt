@@ -1,5 +1,6 @@
 package com.example.githubuserfinder.ui
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -7,7 +8,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.example.githubuserfinder.features.feature_userDetail.navigation.START_ROUTE
+import com.example.githubuserfinder.features.feature_repoDetail.navigation.repoDetailScreen
+import com.example.githubuserfinder.features.feature_userDetail.navigation.USER_DETAIL_ROUTE
 import com.example.githubuserfinder.features.feature_userDetail.navigation.userDetailScreen
 
 /**
@@ -23,15 +25,16 @@ fun TakeHomeNavHost(
     navController: NavHostController,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    startDestination: String = START_ROUTE,
+    startDestination: String = USER_DETAIL_ROUTE,
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = Modifier.semantics {
             testTagsAsResourceId = true
-        }.then(modifier)
+        }.then(modifier.fillMaxSize())
     ) {
         userDetailScreen(navController)
+        repoDetailScreen(onBackClick)
     }
 }

@@ -6,6 +6,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -47,6 +48,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.githubuserfinder.features.feature_userDetail.model.UserItem
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.runtime.State
+import androidx.navigation.NavController
+import com.example.githubuserfinder.features.feature_repoDetail.navigation.navigateRepoDetail
 import com.example.githubuserfinder.features.feature_userDetail.model.UserReposItem
 import com.example.githubuserfinder.ui.common.SimpleTopAppBar
 
@@ -59,6 +62,7 @@ internal fun UserDetailScreen(
     userRepos: State<List<UserReposItem>>,
     isReposVisible: State<MutableTransitionState<Boolean>>,
     clearStates: () -> Unit,
+    navController: NavController,
 ) {
     Scaffold(
         topBar = {
@@ -73,6 +77,7 @@ internal fun UserDetailScreen(
                 userRepos,
                 isReposVisible,
                 clearStates,
+                navController,
             )
         }
     )
@@ -87,6 +92,7 @@ internal fun UserDetailScreenContent(
     userRepos: State<List<UserReposItem>>,
     isReposVisible: State<MutableTransitionState<Boolean>>,
     clearStates: () -> Unit,
+    navController: NavController,
 ) {
     var text by rememberSaveable { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -148,6 +154,7 @@ internal fun UserDetailScreenContent(
         Spacer(modifier = Modifier.height(MaterialTheme.space.small))
 
         AnimatedVisibility(
+            modifier = Modifier.fillMaxSize(),
             visibleState = isReposVisible.value,
             enter = slideInVertically(
                 initialOffsetY = { it / 5 },
@@ -165,10 +172,22 @@ internal fun UserDetailScreenContent(
                 }) {
                     Card(
                         modifier = Modifier
-                            .fillMaxWidth(),
+                            .fillMaxWidth()
+                            .clickable {
+                                navController.navigateRepoDetail(
+                                    description = it.description,
+                                    title = it.name,
+                                    avatarUrl = userItem.value.avatarUrl,
+                                    stars = it.stars.toString(),
+                                    name = it.name
+                                )
+                            },
                         elevation = CardDefaults.cardElevation(MaterialTheme.space.small)
                     ) {
-                        Column(Modifier.padding(MaterialTheme.space.medium)) {
+                        Column(
+                            Modifier
+                                .padding(MaterialTheme.space.medium)
+                                .fillMaxSize()) {
 
                             Text(
                                 text = it.name.orEmpty(),
@@ -201,6 +220,7 @@ fun ImageAndTitleSection(
     isImageSectionVisible: State<MutableTransitionState<Boolean>>
 ) {
     AnimatedVisibility(
+        modifier = Modifier.fillMaxWidth(),
         visibleState = isImageSectionVisible.value,
         enter = slideInVertically(
             initialOffsetY = { it / 5 },
