@@ -34,6 +34,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import com.example.githubuserfinder.R
 import com.example.githubuserfinder.ui.theme.space
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -41,6 +42,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.githubuserfinder.features.userDetail.model.UserItem
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.runtime.State
 import com.example.githubuserfinder.ui.common.SimpleTopAppBar
 
@@ -74,6 +76,7 @@ internal fun UserDetailScreenContent(
     isImageSectionVisible: State<MutableTransitionState<Boolean>>
 ) {
     var text by rememberSaveable { mutableStateOf("") }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(
         modifier = modifier
@@ -93,6 +96,10 @@ internal fun UserDetailScreenContent(
                     keyboardType = KeyboardType.Text,
                     imeAction = ImeAction.Done
                 ),
+                keyboardActions = KeyboardActions(onDone = {
+                    keyboardController?.hide()
+                    searchUser(text)
+                }),
                 modifier = Modifier
                     .padding(MaterialTheme.space.small)
                     .testTag("search_user")
@@ -106,6 +113,7 @@ internal fun UserDetailScreenContent(
 
             Button(
                 onClick = {
+                    keyboardController?.hide()
                     searchUser(text)
                 },
                 shape = RoundedCornerShape(MaterialTheme.space.xSmall),
