@@ -179,7 +179,7 @@ internal fun UserDetailScreenContent(
                                     title = it.name,
                                     avatarUrl = userItem.value.avatarUrl,
                                     stars = it.stars.toString(),
-                                    name = it.name
+                                    name = userItem.value.userName
                                 )
                             },
                         elevation = CardDefaults.cardElevation(MaterialTheme.space.small)

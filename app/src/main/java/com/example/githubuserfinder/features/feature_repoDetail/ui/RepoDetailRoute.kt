@@ -12,5 +12,12 @@ internal fun RepoDetailRoute(
     stars: String,
     name: String,
 ) {
-    RepoDetailScreen(onBackClick = onBackClick)
+    RepoDetailScreen(
+        onBackClick = onBackClick,
+        avatarUrl = avatarUrl,
+        repoTitle = repoTitle,
+        repoDescription = repoDescription,
+        stars = stars,
+        name = name,
+    )
 }
