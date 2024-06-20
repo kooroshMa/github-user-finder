@@ -3,7 +3,7 @@ package com.example.githubuserfinder.features.feature_repoDetail.ui
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.githubuserfinder.ui.SharedViewModel
+import com.example.githubuserfinder.SharedViewModel
 
 @Composable
 internal fun RepoDetailRoute(

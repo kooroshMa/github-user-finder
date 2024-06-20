@@ -1,4 +1,4 @@
-package com.example.githubuserfinder.ui
+package com.example.githubuserfinder
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

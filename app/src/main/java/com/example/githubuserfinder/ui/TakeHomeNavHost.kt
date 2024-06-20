@@ -9,6 +9,7 @@ import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.example.githubuserfinder.SharedViewModel
 import com.example.githubuserfinder.features.feature_repoDetail.navigation.repoDetailScreen
 import com.example.githubuserfinder.features.feature_userDetail.navigation.USER_DETAIL_ROUTE
 import com.example.githubuserfinder.features.feature_userDetail.navigation.userDetailScreen

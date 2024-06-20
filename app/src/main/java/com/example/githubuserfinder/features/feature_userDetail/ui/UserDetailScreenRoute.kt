@@ -5,7 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.githubuserfinder.features.feature_userDetail.UserDetailViewModel
-import com.example.githubuserfinder.ui.SharedViewModel
+import com.example.githubuserfinder.SharedViewModel
 
 @Composable
 internal fun UserDetailRoute(

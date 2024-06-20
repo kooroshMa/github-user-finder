@@ -8,7 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.githubuserfinder.features.feature_repoDetail.ui.RepoDetailRoute
-import com.example.githubuserfinder.ui.SharedViewModel
+import com.example.githubuserfinder.SharedViewModel
 
 const val REPO_DETAIL_ROUTE = "repo_detail"
 
