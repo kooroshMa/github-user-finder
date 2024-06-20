@@ -6,4 +6,6 @@
     <string name="repoTitle">Title:</string>
     <string name="stars">Stars:</string>
     <string name="repoDescription">Description:</string>
+    <string name="with_badge">You have more than 5000 forks!!!</string>
+    <string name="without_badge">You have less than 5000 forks</string>
 </resources>

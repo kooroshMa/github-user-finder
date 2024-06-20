@@ -6,6 +6,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.githubuserfinder.features.feature_repoDetail.navigation.repoDetailScreen
@@ -26,15 +27,18 @@ fun TakeHomeNavHost(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
     startDestination: String = USER_DETAIL_ROUTE,
+    sharedViewModel: SharedViewModel = hiltViewModel(),
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        modifier = Modifier.semantics {
-            testTagsAsResourceId = true
-        }.then(modifier.fillMaxSize())
+        modifier = Modifier
+            .semantics {
+                testTagsAsResourceId = true
+            }
+            .then(modifier.fillMaxSize())
     ) {
-        userDetailScreen(navController)
-        repoDetailScreen(onBackClick)
+        userDetailScreen(navController, sharedViewModel)
+        repoDetailScreen(onBackClick, sharedViewModel)
     }
 }

@@ -8,6 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.githubuserfinder.features.feature_repoDetail.ui.RepoDetailRoute
+import com.example.githubuserfinder.ui.SharedViewModel
 
 const val REPO_DETAIL_ROUTE = "repo_detail"
 
@@ -34,7 +35,10 @@ internal fun NavController.navigateRepoDetail(
     )
 }
 
-fun NavGraphBuilder.repoDetailScreen(onBackClick: () -> Unit) {
+fun NavGraphBuilder.repoDetailScreen(
+    onBackClick: () -> Unit,
+    sharedViewModel: SharedViewModel,
+) {
     composable(
         route = "$REPO_DETAIL_ROUTE/{$AVATAR_URL}/{$REPO_TITLE}/{$REPO_DESCRIPTION}/{$STARS}/{$NAME}",
         listOf(
@@ -65,7 +69,9 @@ fun NavGraphBuilder.repoDetailScreen(onBackClick: () -> Unit) {
         val avatarUrl = it.arguments?.getString(AVATAR_URL)
         val stars = it.arguments?.getString(STARS)
         val name = it.arguments?.getString(NAME)
+
         RepoDetailRoute(
+            sharedViewModel = sharedViewModel,
             onBackClick = onBackClick,
             repoDescription = description.orEmpty(),
             repoTitle = title.orEmpty(),
