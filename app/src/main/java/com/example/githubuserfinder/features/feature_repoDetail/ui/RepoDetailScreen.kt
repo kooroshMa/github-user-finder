@@ -22,6 +22,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.githubuserfinder.R
 import com.example.githubuserfinder.ui.common.SimpleTopAppBar
 import com.example.githubuserfinder.ui.theme.space
+import androidx.compose.runtime.State
+import androidx.compose.ui.graphics.Color
 
 @Composable
 internal fun RepoDetailScreen(
@@ -32,6 +34,7 @@ internal fun RepoDetailScreen(
     repoDescription: String,
     stars: String,
     name: String,
+    sharedState: State<BadgeState>,
 ) {
     Scaffold(
         topBar = {
@@ -130,7 +133,42 @@ internal fun RepoDetailScreen(
                         color = MaterialTheme.colorScheme.onBackground
                     )
                 }
+
+                Spacer(modifier = Modifier.height(MaterialTheme.space.small))
+
+                Badge(sharedState.value)
             }
         }
     )
+}
+
+@Composable
+fun Badge(sharedState: BadgeState) {
+
+    when (sharedState) {
+        is BadgeState.None -> {
+            Text(
+                text = "None",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground,
+            )
+        }
+
+        is BadgeState.Loading -> {
+            Text(
+                text = "loading",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground,
+            )
+        }
+
+        is BadgeState.Finished -> {
+            Text(
+                text = if (sharedState.forks > 5000) stringResource(R.string.with_badge)
+                else stringResource(R.string.without_badge),
+                style = MaterialTheme.typography.bodyMedium,
+                color = if (sharedState.forks > 5000) Color.Yellow else Color.Red,
+            )
+        }
+    }
 }

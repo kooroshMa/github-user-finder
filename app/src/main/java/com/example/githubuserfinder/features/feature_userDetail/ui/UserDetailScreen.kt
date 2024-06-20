@@ -63,6 +63,8 @@ internal fun UserDetailScreen(
     isReposVisible: State<MutableTransitionState<Boolean>>,
     clearStates: () -> Unit,
     navController: NavController,
+    sumForks: (List<UserReposItem>) -> Unit,
+    stopCalculation: () -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -78,6 +80,8 @@ internal fun UserDetailScreen(
                 isReposVisible,
                 clearStates,
                 navController,
+                sumForks,
+                stopCalculation,
             )
         }
     )
@@ -93,6 +97,8 @@ internal fun UserDetailScreenContent(
     isReposVisible: State<MutableTransitionState<Boolean>>,
     clearStates: () -> Unit,
     navController: NavController,
+    sumForks: (List<UserReposItem>) -> Unit,
+    stopCalculation: () -> Unit,
 ) {
     var text by rememberSaveable { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -132,6 +138,7 @@ internal fun UserDetailScreenContent(
             Button(
                 onClick = {
                     keyboardController?.hide()
+                    stopCalculation()
                     clearStates.invoke()
                     searchUser(text)
                 },
@@ -174,6 +181,7 @@ internal fun UserDetailScreenContent(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
+                                sumForks(userRepos.value)
                                 navController.navigateRepoDetail(
                                     description = it.description,
                                     title = it.name,
@@ -181,13 +189,15 @@ internal fun UserDetailScreenContent(
                                     stars = it.stars.toString(),
                                     name = userItem.value.userName
                                 )
+
                             },
                         elevation = CardDefaults.cardElevation(MaterialTheme.space.small)
                     ) {
                         Column(
                             Modifier
                                 .padding(MaterialTheme.space.medium)
-                                .fillMaxSize()) {
+                                .fillMaxSize()
+                        ) {
 
                             Text(
                                 text = it.name.orEmpty(),
