@@ -7,6 +7,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.example.githubuserfinder.features.feature_userDetail.navigation.START_ROUTE
+import com.example.githubuserfinder.features.feature_userDetail.navigation.userDetailScreen
 
 /**
  * Top-level navigation graph. Navigation is organized as explained at
@@ -30,6 +32,6 @@ fun TakeHomeNavHost(
             testTagsAsResourceId = true
         }.then(modifier)
     ) {
-        startScreen(navController)
+        userDetailScreen(navController)
     }
 }

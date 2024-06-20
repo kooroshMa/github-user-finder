@@ -1,4 +1,4 @@
-package com.example.githubuserfinder.features.userDetail.ui
+package com.example.githubuserfinder.features.feature_userDetail.ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.MutableTransitionState
@@ -44,10 +44,10 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.example.githubuserfinder.features.userDetail.model.UserItem
+import com.example.githubuserfinder.features.feature_userDetail.model.UserItem
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.runtime.State
-import com.example.githubuserfinder.features.userDetail.model.UserReposItem
+import com.example.githubuserfinder.features.feature_userDetail.model.UserReposItem
 import com.example.githubuserfinder.ui.common.SimpleTopAppBar
 
 @Composable

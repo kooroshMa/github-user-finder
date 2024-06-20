@@ -1,9 +1,9 @@
-package com.example.githubuserfinder.features.userDetail.ui
+package com.example.githubuserfinder.features.feature_userDetail.ui
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.githubuserfinder.features.userDetail.UserDetailViewModel
+import com.example.githubuserfinder.features.feature_userDetail.UserDetailViewModel
 
 @Composable
 internal fun UserDetailRoute(
