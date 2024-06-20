@@ -28,8 +28,8 @@ class UserDetailViewModel @Inject constructor(
     private val getUserReposRepoUseCase: GetUserReposRepoUseCase
 ) : ViewModel() {
 
-    private val _usersState = MutableStateFlow(UserItem(userId = 0, userName = "", avatarUrl = ""))
-    val usersState = _usersState.asStateFlow()
+    private val _userState = MutableStateFlow(UserItem(userId = 0, userName = "", avatarUrl = ""))
+    val userState = _userState.asStateFlow()
 
     private val _isImageSectionVisible = MutableStateFlow(MutableTransitionState(false))
     val isImageSectionVisible = _isImageSectionVisible.asStateFlow()
@@ -58,7 +58,7 @@ class UserDetailViewModel @Inject constructor(
     private fun onSuccessResponse(users: UserDetailModel) {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
-                _usersState.value = users.toUserItem()
+                _userState.value = users.toUserItem()
             }
             _isImageSectionVisible.value.targetState = true
         }
@@ -80,6 +80,6 @@ class UserDetailViewModel @Inject constructor(
 
     fun clearStates(){
         _userRepoState.value = emptyList()
-        _usersState.value = UserItem(null,"",0)
+        _userState.value = UserItem(null,"",0)
     }
 }

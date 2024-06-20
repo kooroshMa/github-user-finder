@@ -10,7 +10,7 @@ internal fun UserDetailRoute(
     viewModel: UserDetailViewModel = hiltViewModel(),
 ) {
 
-    val user = viewModel.usersState.collectAsStateWithLifecycle()
+    val user = viewModel.userState.collectAsStateWithLifecycle()
     val isImageSectionVisible = viewModel.isImageSectionVisible.collectAsStateWithLifecycle()
 
     val userRepos = viewModel.userRepoState.collectAsStateWithLifecycle()
