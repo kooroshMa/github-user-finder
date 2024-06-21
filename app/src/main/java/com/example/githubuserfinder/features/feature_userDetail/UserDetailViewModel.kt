@@ -75,7 +75,7 @@ class UserDetailViewModel @Inject constructor(
     }
 
     private fun onErrorResponse(error: NetworkError) {
-        Log.d("error", error.toString())
+        //handle error based on the project.
     }
 
     fun clearStates(){
