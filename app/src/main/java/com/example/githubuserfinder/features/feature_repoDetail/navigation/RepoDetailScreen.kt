@@ -29,8 +29,10 @@ internal fun NavController.navigateRepoDetail(
 
     val encodeAvatarUrl = Uri.encode(avatarUrl)
 
+    val encodeDescription = Uri.encode(description)
+
     navigate(
-        route = "$REPO_DETAIL_ROUTE/$encodeAvatarUrl/$title/$description/$stars/$name",
+        route = "$REPO_DETAIL_ROUTE/$encodeAvatarUrl/$title/$encodeDescription/$stars/$name",
         navOptions = navOptions
     )
 }
@@ -66,7 +68,7 @@ fun NavGraphBuilder.repoDetailScreen(
     ) {
         val description = Uri.decode(it.arguments?.getString(REPO_DESCRIPTION))
         val title = it.arguments?.getString(REPO_TITLE)
-        val avatarUrl = it.arguments?.getString(AVATAR_URL)
+        val avatarUrl = Uri.decode(it.arguments?.getString(AVATAR_URL))
         val stars = it.arguments?.getString(STARS)
         val name = it.arguments?.getString(NAME)
 
@@ -75,7 +77,7 @@ fun NavGraphBuilder.repoDetailScreen(
             onBackClick = onBackClick,
             repoDescription = description.orEmpty(),
             repoTitle = title.orEmpty(),
-            avatarUrl = Uri.decode(avatarUrl),
+            avatarUrl = avatarUrl.orEmpty(),
             stars = stars.orEmpty(),
             name = name.orEmpty()
         )
