@@ -28,7 +28,7 @@ class UserDetailViewModel @Inject constructor(
     private val getUserReposRepoUseCase: GetUserReposRepoUseCase
 ) : ViewModel() {
 
-    private val _userState = MutableStateFlow(UserItem(userId = 0, userName = "", avatarUrl = ""))
+    private val _userState = MutableStateFlow(UserItem(userName = "", avatarUrl = ""))
     val userState = _userState.asStateFlow()
 
     private val _isImageSectionVisible = MutableStateFlow(MutableTransitionState(false))
@@ -75,11 +75,11 @@ class UserDetailViewModel @Inject constructor(
     }
 
     private fun onErrorResponse(error: NetworkError) {
-        Log.d("error", error.toString())
+        //handle error based on the project.
     }
 
     fun clearStates(){
         _userRepoState.value = emptyList()
-        _userState.value = UserItem(null,"",0)
+        _userState.value = UserItem(null,"")
     }
 }

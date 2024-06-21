@@ -1,6 +1,6 @@
 package com.example.githubuserfinder.di
 
-import com.example.data.repository.GetUserDetailDetailRepoImpl
+import com.example.data.repository.GetUserDetailRepoImpl
 import com.example.data.repository.GetUserReposRepoImpl
 import com.example.domain.repository.GetUserDetailRepository
 import com.example.domain.repository.GetUserReposRepository
@@ -14,7 +14,7 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryBuilder {
 
     @Binds
-    abstract fun bindUserRepo(userRepoImpl: GetUserDetailDetailRepoImpl): GetUserDetailRepository
+    abstract fun bindUserRepo(userRepoImpl: GetUserDetailRepoImpl): GetUserDetailRepository
 
     @Binds
     abstract fun bindUserReposRepo(userReposRepoImpl: GetUserReposRepoImpl): GetUserReposRepository

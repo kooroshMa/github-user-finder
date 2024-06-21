@@ -6,6 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UserDetailModel(
     @SerialName("login") val userName: String,
-    @SerialName("id") val userId: Long,
     @SerialName("avatar_url") val avatarUrl: String?,
 )

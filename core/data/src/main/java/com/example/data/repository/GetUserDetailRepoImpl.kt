@@ -6,7 +6,7 @@ import com.example.domain.model.UserDetailModel
 import com.example.domain.repository.GetUserDetailRepository
 import javax.inject.Inject
 
-class GetUserDetailDetailRepoImpl @Inject constructor(
+class GetUserDetailRepoImpl @Inject constructor(
     @Cloud private val baseCloudRepository: BaseCloudRepository
 ) : GetUserDetailRepository {
 
