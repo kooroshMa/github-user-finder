@@ -7,6 +7,7 @@ import com.example.githubuserfinder.features.feature_userDetail.model.UserReposI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -28,13 +29,14 @@ class SharedViewModel @Inject constructor() : ViewModel() {
     private val totalForks: Long
         get() = _totalForks
 
-    fun sumForks(repos: List<UserReposItem>) {
+    fun sumForks(repos: List<UserReposItem>, delay: Long = 0L) {
         if (isSumForksTriggered) return
         isSumForksTriggered = true
         _sharedState.update { BadgeState.Loading }
         sumJob = viewModelScope.launch(Dispatchers.Default) {
             _totalForks = 0
             repos.forEach { repo ->
+                delay(delay)
                 _totalForks += repo.forks ?: 0
                 ensureActive()
             }
