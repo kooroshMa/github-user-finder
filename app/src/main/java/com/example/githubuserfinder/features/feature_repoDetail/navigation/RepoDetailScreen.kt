@@ -4,13 +4,10 @@ import android.net.Uri
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
-import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import com.example.githubuserfinder.features.feature_repoDetail.ui.RepoDetailRoute
 import com.example.githubuserfinder.SharedViewModel
-
-const val REPO_DETAIL_ROUTE = "repo_detail"
+import kotlinx.serialization.Serializable
 
 const val AVATAR_URL = "avatarUrl"
 const val REPO_TITLE = "repoTitle"
@@ -27,45 +24,32 @@ internal fun NavController.navigateRepoDetail(
     name: String?
 ) {
 
-    val encodeAvatarUrl = Uri.encode(avatarUrl)
-
-    val encodeDescription = Uri.encode(description)
-
     navigate(
-        route = "$REPO_DETAIL_ROUTE/$encodeAvatarUrl/$title/$encodeDescription/$stars/$name",
+        RepoDetail(
+            avatarUrl = avatarUrl,
+            title = title,
+            description = description,
+            stars = stars,
+            name = name,
+        ),
         navOptions = navOptions
     )
 }
+
+@Serializable
+data class RepoDetail(
+    val avatarUrl: String?,
+    val title: String?,
+    val description: String?,
+    val stars: String?,
+    val name: String?,
+)
 
 fun NavGraphBuilder.repoDetailScreen(
     onBackClick: () -> Unit,
     sharedViewModel: SharedViewModel,
 ) {
-    composable(
-        route = "$REPO_DETAIL_ROUTE/{$AVATAR_URL}/{$REPO_TITLE}/{$REPO_DESCRIPTION}/{$STARS}/{$NAME}",
-        listOf(
-            navArgument(AVATAR_URL) {
-                type = NavType.StringType
-                nullable = true
-            },
-            navArgument(REPO_TITLE) {
-                type = NavType.StringType
-                nullable = true
-            },
-            navArgument(REPO_DESCRIPTION) {
-                type = NavType.StringType
-                nullable = true
-            },
-            navArgument(STARS) {
-                type = NavType.StringType
-                nullable = true
-            },
-            navArgument(NAME) {
-                type = NavType.StringType
-                nullable = true
-            }
-        )
-    ) {
+    composable<RepoDetail> {
         val description = Uri.decode(it.arguments?.getString(REPO_DESCRIPTION))
         val title = it.arguments?.getString(REPO_TITLE)
         val avatarUrl = Uri.decode(it.arguments?.getString(AVATAR_URL))
