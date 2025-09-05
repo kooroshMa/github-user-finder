@@ -1,19 +1,13 @@
 package com.example.githubuserfinder.features.feature_repoDetail.navigation
 
-import android.net.Uri
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import com.example.githubuserfinder.features.feature_repoDetail.ui.RepoDetailRoute
 import com.example.githubuserfinder.SharedViewModel
 import kotlinx.serialization.Serializable
-
-const val AVATAR_URL = "avatarUrl"
-const val REPO_TITLE = "repoTitle"
-const val REPO_DESCRIPTION = "repoDescription"
-const val STARS = "stars"
-const val NAME = "name"
 
 internal fun NavController.navigateRepoDetail(
     navOptions: NavOptions? = null,
@@ -50,20 +44,16 @@ fun NavGraphBuilder.repoDetailScreen(
     sharedViewModel: SharedViewModel,
 ) {
     composable<RepoDetail> {
-        val description = Uri.decode(it.arguments?.getString(REPO_DESCRIPTION))
-        val title = it.arguments?.getString(REPO_TITLE)
-        val avatarUrl = Uri.decode(it.arguments?.getString(AVATAR_URL))
-        val stars = it.arguments?.getString(STARS)
-        val name = it.arguments?.getString(NAME)
+        val args = it.toRoute<RepoDetail>()
 
         RepoDetailRoute(
             sharedViewModel = sharedViewModel,
             onBackClick = onBackClick,
-            repoDescription = description.orEmpty(),
-            repoTitle = title.orEmpty(),
-            avatarUrl = avatarUrl.orEmpty(),
-            stars = stars.orEmpty(),
-            name = name.orEmpty()
+            repoDescription = args.description.orEmpty(),
+            repoTitle = args.title.orEmpty(),
+            avatarUrl = args.avatarUrl.orEmpty(),
+            stars = args.stars.orEmpty(),
+            name = args.name.orEmpty()
         )
     }
 }
