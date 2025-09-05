@@ -11,7 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.githubuserfinder.SharedViewModel
 import com.example.githubuserfinder.features.feature_repoDetail.navigation.repoDetailScreen
-import com.example.githubuserfinder.features.feature_userDetail.navigation.USER_DETAIL_ROUTE
+import com.example.githubuserfinder.features.feature_userDetail.navigation.UserDetail
 import com.example.githubuserfinder.features.feature_userDetail.navigation.userDetailScreen
 
 /**
@@ -27,7 +27,7 @@ fun TakeHomeNavHost(
     navController: NavHostController,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
-    startDestination: String = USER_DETAIL_ROUTE,
+    startDestination: Any = UserDetail,
     sharedViewModel: SharedViewModel = hiltViewModel(),
 ) {
     NavHost(

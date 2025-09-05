@@ -5,14 +5,17 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.githubuserfinder.features.feature_userDetail.ui.UserDetailRoute
 import com.example.githubuserfinder.SharedViewModel
+import kotlinx.serialization.Serializable
 
-internal const val USER_DETAIL_ROUTE = "detail_route"
 
 fun NavGraphBuilder.userDetailScreen(
     navController: NavController,
     sharedViewModel: SharedViewModel
 ) {
-    composable(route = USER_DETAIL_ROUTE) {
+    composable<UserDetail> {
         UserDetailRoute(navController = navController, sharedViewModel = sharedViewModel)
     }
 }
+
+@Serializable
+data object UserDetail
