@@ -1,6 +1,5 @@
 package com.example.githubuserfinder.features.feature_userDetail
 
-import android.util.Log
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
