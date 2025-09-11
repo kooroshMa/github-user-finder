@@ -6,7 +6,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.example.githubuserfinder.features.feature_repoDetail.ui.RepoDetailRoute
-import com.example.githubuserfinder.SharedViewModel
 import kotlinx.serialization.Serializable
 
 internal fun NavController.navigateRepoDetail(
@@ -40,14 +39,14 @@ data class RepoDetail(
 )
 
 fun NavGraphBuilder.repoDetailScreen(
+    navController: NavController,
     onBackClick: () -> Unit,
-    sharedViewModel: SharedViewModel,
 ) {
     composable<RepoDetail> {
         val args = it.toRoute<RepoDetail>()
 
         RepoDetailRoute(
-            sharedViewModel = sharedViewModel,
+            navController = navController,
             onBackClick = onBackClick,
             repoDescription = args.description.orEmpty(),
             repoTitle = args.title.orEmpty(),
