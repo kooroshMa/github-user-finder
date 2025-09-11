@@ -7,9 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.example.githubuserfinder.SharedViewModel
 import com.example.githubuserfinder.features.feature_repoDetail.navigation.repoDetailScreen
 import com.example.githubuserfinder.features.feature_userDetail.navigation.UserDetail
 import com.example.githubuserfinder.features.feature_userDetail.navigation.userDetailScreen
@@ -28,7 +29,6 @@ fun TakeHomeNavHost(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
     startDestination: Any = UserDetail,
-    sharedViewModel: SharedViewModel = hiltViewModel(),
 ) {
     NavHost(
         navController = navController,
@@ -39,7 +39,14 @@ fun TakeHomeNavHost(
             }
             .then(modifier.fillMaxSize())
     ) {
-        userDetailScreen(navController, sharedViewModel)
-        repoDetailScreen(onBackClick, sharedViewModel)
+        userDetailScreen(navController)
+        repoDetailScreen(navController, onBackClick)
     }
+}
+
+@Composable
+inline fun <reified VM : ViewModel> sharedHiltViewModel(navController: NavController): VM {
+    // Scope to the NavHost's root graph (lives as long as the NavHost)
+    val owner =  navController.getBackStackEntry(navController.graph.id)
+    return hiltViewModel(owner)
 }

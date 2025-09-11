@@ -1,13 +1,15 @@
 package com.example.githubuserfinder.features.feature_repoDetail.ui
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.example.githubuserfinder.SharedViewModel
+import com.example.githubuserfinder.ui.sharedHiltViewModel
 
 @Composable
 internal fun RepoDetailRoute(
-    sharedViewModel: SharedViewModel = hiltViewModel(),
+    navController: NavController,
+    sharedViewModel: SharedViewModel = sharedHiltViewModel(navController),
     onBackClick: () -> Unit,
     avatarUrl: String,
     repoTitle: String,

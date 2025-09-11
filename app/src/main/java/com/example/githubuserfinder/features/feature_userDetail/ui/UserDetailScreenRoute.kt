@@ -6,12 +6,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.githubuserfinder.features.feature_userDetail.UserDetailViewModel
 import com.example.githubuserfinder.SharedViewModel
+import com.example.githubuserfinder.ui.sharedHiltViewModel
 
 @Composable
 internal fun UserDetailRoute(
-    viewModel: UserDetailViewModel = hiltViewModel(),
-    sharedViewModel: SharedViewModel = hiltViewModel(),
     navController: NavController,
+    viewModel: UserDetailViewModel = hiltViewModel(),
+    sharedViewModel: SharedViewModel = sharedHiltViewModel(navController),
 ) {
 
     val user = viewModel.userState.collectAsStateWithLifecycle()
